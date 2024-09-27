@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>IntersectionObserver Example</title>
+</head>
+<body>
+
+  <div class="block">Block 1</div>
+  <div class="block">Block 2</div>
+  <div class="block" id="block3">Block 3</div>
+  <div class="block">Block 4</div>
+
+  <div id="phone-popup">Телефон: +7 (999) 123-45-67</div>
+
+  <script>
+
+    const block3 = document.getElementById('block3');
+    const phonePopup = document.getElementById('phone-popup');
+
+ 
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+        
+          phonePopup.style.display = 'block';
+        } else {
+        
+          phonePopup.style.display = 'none';
+        }
+      });
+    }, {
+      threshold: [0.5] 
+    });
+
+
+    observer.observe(block3);
+  </script>
+
+</body>
+</html>
